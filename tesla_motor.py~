@@ -1,0 +1,36 @@
+from pymongo import MongoClient
+import pprint
+
+client = MongoClient('mongodb://localhost:27017/')
+
+tesla_s = {
+	"manufacturer" : "Tesla Motors",       
+	"class":"full_size",
+	"body style":"5-door liftback",
+	"production":[2013,2014],
+	"model year":[2013],
+	"layout":["rear-motor","rear-wheel drive"],
+	"designer":{
+		"first name":"Praveen" ,
+		"surname":"Pal"
+		},
+	"assembly":[
+		{
+			"country" : "India",
+			"city": "Lucknow",
+			"state":"Uttar Pradesh"
+		},
+		{
+			"country":"Neatherlands",
+			"city":"Tilburg"
+
+		}
+	]
+
+
+   }
+db=client.examples
+db.autos.insert(tesla_s)
+for a in db.autos.find():
+    pprint.pprint(a)
+
